@@ -1,0 +1,24 @@
+# .NET Build outputs
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+
+# NuGet packages
+*.nupkg
+packages/
+*.lock.json
+
+# Secrets (NEVER commit API keys!)
+appsettings.Local.json
+secrets.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

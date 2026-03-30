@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aurora Vortex Scalper — Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Background orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <div class="logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">AURORA <span class="accent">VORTEX</span></span>
+      </div>
+      <div class="version">SCALPER ENGINE v1.0</div>
+    </div>
+    <div class="header-right">
+      <div id="engine-status" class="status-badge status-active">
+        <span class="pulse-dot"></span> ENGINE ACTIVE
+      </div>
+      <button id="toggle-btn" class="btn-toggle" onclick="toggleEngine()">⏹ Stop Engine</button>
+    </div>
+  </header>
+
+  <!-- KPI CARDS -->
+  <section class="kpi-grid">
+    <div class="kpi-card kpi-profit">
+      <div class="kpi-icon">💰</div>
+      <div class="kpi-body">
+        <div class="kpi-label">Total Profit (Today)</div>
+        <div class="kpi-value" id="total-profit">+$0.00</div>
+        <div class="kpi-sub" id="profit-percent">+0.00%</div>
+      </div>
+    </div>
+    <div class="kpi-card kpi-trades">
+      <div class="kpi-icon">📊</div>
+      <div class="kpi-body">
+        <div class="kpi-label">Trades Executed</div>
+        <div class="kpi-value" id="trade-count">0</div>
+        <div class="kpi-sub" id="win-rate">Win Rate: 0%</div>
+      </div>
+    </div>
+    <div class="kpi-card kpi-risk">
+      <div class="kpi-icon">🛡️</div>
+      <div class="kpi-body">
+        <div class="kpi-label">Daily Loss Used</div>
+        <div class="kpi-value" id="daily-loss">$0.00</div>
+        <div class="kpi-sub">Limit: $5.00</div>
+      </div>
+      <div class="risk-bar-wrap">
+        <div class="risk-bar" id="risk-bar" style="width:0%"></div>
+      </div>
+    </div>
+    <div class="kpi-card kpi-active">
+      <div class="kpi-icon">⚡</div>
+      <div class="kpi-body">
+        <div class="kpi-label">Active Trades</div>
+        <div class="kpi-value" id="active-count">0</div>
+        <div class="kpi-sub">Watching 10 pairs</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-grid">
+
+    <!-- LIVE PRICE RADAR -->
+    <section class="card radar-card">
+      <div class="card-header">
+        <h2>📡 Live Price Radar</h2>
+        <span class="live-badge">LIVE</span>
+      </div>
+      <div class="radar-grid" id="radar-grid">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+    <!-- TRADE LOG -->
+    <section class="card log-card">
+      <div class="card-header">
+        <h2>📋 Trade Log</h2>
+        <button class="btn-clear" onclick="clearLog()">Clear</button>
+      </div>
+      <div class="log-list" id="log-list">
+        <div class="log-empty">Waiting for trades...</div>
+      </div>
+    </section>
+
+    <!-- EQUITY CHART -->
+    <section class="card chart-card">
+      <div class="card-header">
+        <h2>📈 Profit Curve</h2>
+        <span class="chart-period">Today</span>
+      </div>
+      <canvas id="profit-chart" height="160"></canvas>
+    </section>
+
+    <!-- SETTINGS PANEL -->
+    <section class="card settings-card">
+      <div class="card-header">
+        <h2>⚙️ Bot Settings</h2>
+      </div>
+      <div class="settings-grid">
+        <div class="setting-item">
+          <label>Trade Size ($)</label>
+          <input type="number" id="trade-size" value="10" min="5" max="100" />
+        </div>
+        <div class="setting-item">
+          <label>Take Profit (%)</label>
+          <input type="number" id="take-profit" value="0.8" step="0.1" min="0.2" max="5" />
+        </div>
+        <div class="setting-item">
+          <label>Stop Loss (%)</label>
+          <input type="number" id="stop-loss" value="1.5" step="0.1" min="0.5" max="5" />
+        </div>
+        <div class="setting-item">
+          <label>Max Daily Loss ($)</label>
+          <input type="number" id="max-loss" value="5" min="1" max="50" />
+        </div>
+        <div class="setting-item">
+          <label>Volume Spike Threshold</label>
+          <input type="number" id="spike-thresh" value="1.5" step="0.1" min="1.1" max="5" />
+        </div>
+        <div class="setting-item">
+          <label>Notifications</label>
+          <label class="toggle-switch">
+            <input type="checkbox" id="notif-toggle" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+      <button class="btn-save" onclick="saveSettings()">💾 Save Settings</button>
+    </section>
+
+  </main>
+
+  <!-- NOTIFICATION TOAST -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
