@@ -69,7 +69,7 @@ namespace Aurora.Vortex
                 trade.IsActive = false;
                 ActiveTrades.TryRemove(trade.Symbol, out _);
                 
-                await FirebaseSync.UpdateDashboard(_totalProfit, _tradeCount, "Running");
+                await FirebaseSync.UpdateDashboard(_totalProfit, _tradeCount, _dailyLoss, "Running");
 
                 // Dashboard Monitoring Notification
                 if (profit > 0)
@@ -105,6 +105,9 @@ namespace Aurora.Vortex
                         Symbol = symbol, EntryPrice = price, Amount = qty, IsActive = true 
                     };
                     ActiveTrades[symbol] = newTrade;
+
+                    // Sync state immediately upon entry
+                    await FirebaseSync.UpdateDashboard(_totalProfit, _tradeCount, _dailyLoss, "Running");
                 }
             }
         }
