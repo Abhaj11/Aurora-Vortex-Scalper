@@ -42,6 +42,7 @@ namespace Aurora.Vortex
                     try
                     {
                         await FirebaseSync.SendRadarData(radarPrices);
+                        await VortexEngine.SyncDashboardState("Running");
                     }
                     catch (Exception ex)
                     {

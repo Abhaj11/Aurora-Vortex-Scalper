@@ -12,7 +12,7 @@ namespace Aurora.Vortex
     public class VortexSocket
     {
         private ClientWebSocket _ws = new();
-        private readonly Uri _uri = new Uri("wss://stream.binance.com:9443/ws");
+        private readonly Uri _uri = new Uri("wss://stream.binance.com/ws");
 
         // Wannan Event din zai sanar da mu duk lokacin da sabon farashi ya zo
         public event Action<string, decimal, decimal>? OnPriceUpdate;

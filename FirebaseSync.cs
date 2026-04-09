@@ -10,7 +10,7 @@ namespace Aurora.Vortex
     public class FirebaseSync
     {
         private static readonly HttpClient client = new HttpClient();
-        private const string FIREBASE_DB_URL = "https://aurora-vortex-scalper-60b9c-default-rtdb.firebaseio.com";
+        private const string FIREBASE_DB_URL = "https://aurora-vortex-scalper-60b9c-default-rtdb.asia-southeast1.firebasedatabase.app";
 
         public static async Task UpdateDashboard(decimal totalProfit, int tradeCount, decimal dailyLoss, string status)
         {

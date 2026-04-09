@@ -111,5 +111,10 @@ namespace Aurora.Vortex
                 }
             }
         }
+
+        public static async Task SyncDashboardState(string status = "Running")
+        {
+            await FirebaseSync.UpdateDashboard(_totalProfit, _tradeCount, _dailyLoss, status);
+        }
     }
 }
